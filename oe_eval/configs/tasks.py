@@ -2659,6 +2659,19 @@ TASK_CONFIGS.update(
                 "regimes": [],
             },
         },
+        "codex_humaneval": {
+            "task_name": "codex_humaneval",
+            "primary_metric": "pass_at_1",
+            "generation_kwargs": {
+                "do_sample": False,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1],
+            },
+            "metadata": {
+                "regimes": [],
+            },
+        },
         "codex_humaneval::starcoder_pass@1": {
             "task_name": "codex_humaneval",
             "primary_metric": "pass_at_1",
