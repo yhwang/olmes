@@ -2659,7 +2659,7 @@ TASK_CONFIGS.update(
                 "regimes": [],
             },
         },
-        "codex_humaneval": {
+        "codex_humaneval:temp0": {
             "task_name": "codex_humaneval",
             "primary_metric": "pass_at_1",
             "generation_kwargs": {
