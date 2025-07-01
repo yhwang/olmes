@@ -770,6 +770,27 @@ TASK_CONFIGS.update(
                 "regimes": [],
             },
         },
+        "mbpp:temp0": {
+            "task_name": "mbpp",
+            "primary_metric": "pass_at_1",
+            "use_chat_format": False,
+            "context_kwargs": {
+                "prompt_variant": "evalplus",
+                "assistant_prefix": "\nBelow is a Python script with a self-contained function that solves the problem and passes corresponding tests:\n```python\n",
+            },
+            "generation_kwargs": {
+                "stop_sequences": ["```", '\n"""', "\nassert", "\n#"],
+                "do_sample": False,
+                "top_p": 0.95,
+                "temperature": 0.0,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1],
+            },
+            "metadata": {
+                "regimes": [],
+            },
+        },
         "mbpp::starcoder_pass@1": {
             "task_name": "mbpp",
             "primary_metric": "pass_at_1",
@@ -834,6 +855,27 @@ TASK_CONFIGS.update(
                 "do_sample": True,
                 "top_p": 0.95,
                 "temperature": 0.8,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1],
+            },
+            "metadata": {
+                "regimes": [],
+            },
+        },
+        "mbppplus:temp0": {
+            "task_name": "mbppplus",
+            "primary_metric": "pass_at_1",
+            "use_chat_format": False,
+            "context_kwargs": {
+                "prompt_variant": "evalplus",
+                "assistant_prefix": "\nBelow is a Python script with a self-contained function that solves the problem and passes corresponding tests:\n```python\n",
+            },
+            "generation_kwargs": {
+                "stop_sequences": ["```", '\n"""', "\nassert", "\n#"],
+                "do_sample": False,
+                "top_p": 0.95,
+                "temperature": 0.0,
             },
             "metric_kwargs": {
                 "pass_at_ks": [1],
@@ -2853,6 +2895,19 @@ TASK_CONFIGS.update(
             "task_name": "codex_humanevalplus",
             "primary_metric": "pass_at_1",
             "use_chat_format": False,
+        },
+        "codex_humanevalplus:temp0": {
+            "task_name": "codex_humanevalplus",
+            "primary_metric": "pass_at_1",
+            "generation_kwargs": {
+                "do_sample": False,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1],
+            },
+            "metadata": {
+                "regimes": [],
+            },
         },
         "codex_humanevalplus:temp0.8": {
             "task_name": "codex_humanevalplus",
