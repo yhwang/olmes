@@ -16,8 +16,23 @@ eval_logger = utils.eval_logger
 
 async def get_completion(model: str, messages: List[dict], kwargs: dict) -> dict:
     try:
+        import os
+
+        kwargs.update(
+            {
+                "extra_headers": {
+                    "RITS_API_KEY": os.environ["RITS_API_KEY"],
+                    "OPENAI_API_KEY": os.environ["RITS_API_KEY"],
+                },
+            }
+        )
+
+        # This call will now work because the environment variable is set
         output_raw = await acompletion(model=model, messages=messages, **kwargs)
+
+        # output_raw = await acompletion(model=model, messages=messages, **kwargs)
         return output_raw
+
     except Exception as e:
         return {
             "continuation": "",
@@ -59,7 +74,9 @@ class LiteLLM(LM):
         try:
             self.batch_size = int(batch_size)  # Ensure batch_size is an integer
         except ValueError:
-            raise ValueError(f"Invalid batch_size: {batch_size}. Only integers are supported.")
+            raise ValueError(
+                f"Invalid batch_size: {batch_size}. Only integers are supported."
+            )
         self._api_base_url = api_base_url
         self._max_api_retries = int(max_api_retries)
         if kwargs:
@@ -126,7 +143,10 @@ class LiteLLM(LM):
         return request, get_completion(self.model, messages, kwargs), assistant_prefix
 
     def process_response(
-        self, request: GenerateUntilRequest, output_raw: dict, assistant_prefix: Optional[str]
+        self,
+        request: GenerateUntilRequest,
+        output_raw: dict,
+        assistant_prefix: Optional[str],
     ) -> dict:
         """Helper method to process a single response"""
         if "llm_error" in output_raw:
@@ -143,7 +163,11 @@ class LiteLLM(LM):
         if not isinstance(content, str):
             content = ""
 
-        llm_dict = output_raw.get("to_dict")() if callable(output_raw.get("to_dict")) else output_raw  # type: ignore
+        llm_dict = (
+            output_raw.get("to_dict")()
+            if callable(output_raw.get("to_dict"))
+            else output_raw
+        )  # type: ignore
         hidden_params = output_raw.get("_hidden_params", {})
 
         return {
@@ -179,7 +203,9 @@ class LiteLLM(LM):
 
             # Process results for this batch
             batch_results = []
-            for (request, _, assistant_prefix), output_raw in zip(completion_tasks, batch_outputs):
+            for (request, _, assistant_prefix), output_raw in zip(
+                completion_tasks, batch_outputs
+            ):
                 result = self.process_response(request, output_raw, assistant_prefix)
                 batch_results.append(result)
 
