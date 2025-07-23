@@ -27,6 +27,7 @@ MODEL_DEFAULTS = {
     "gpu_memory_utilization": None,
     "process_output": None,
     "api_base_url": None,  # Used for litellm models
+    "extra_headers": None,  # Used for litellm models
 }
 
 TASK_DEFAULTS = {
