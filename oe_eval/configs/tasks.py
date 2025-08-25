@@ -644,7 +644,11 @@ TASK_CONFIGS.update(
                     # The exact expected answer pattern according to template above
                     "answer_format_regex": "(?i)Answer[ \t]*:[ \t]*\$?([A-D])\$?",
                     # Looser versions of the answer prefix, including somewhat canonical variants
-                    "answer_prefix_regexes": ["(?i)Answer: ", "(?i)answer:", "(?i)answer is"],
+                    "answer_prefix_regexes": [
+                        "(?i)Answer: ",
+                        "(?i)answer:",
+                        "(?i)answer is",
+                    ],
                     # Format of the answer itself, e.g., "(A)", including fallback variants, e.g., "A"
                     "answer_regexes": ["\\b([A-D])\\b", "\\$([A-D])\\b"],
                 },
@@ -3194,6 +3198,60 @@ TASK_CONFIGS.update(
             },
             "metadata": {
                 "regimes": ["Tulu"],
+            },
+        },
+        "codex_humanevalfim_single::olmo3": {
+            "task_name": "codex_humanevalfim_single",
+            "primary_metric": "pass_at_1",
+            "generation_kwargs": {
+                "do_sample": True,
+                "top_p": 0.95,
+                "temperature": 0.8,
+                "repeats": 20,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1, 10],
+                "n_exe_workers": 20,
+                "rich_exec_info": True,
+            },
+            "metadata": {
+                "regimes": [],
+            },
+        },
+        "codex_humanevalfim_random::olmo3": {
+            "task_name": "codex_humanevalfim_random",
+            "primary_metric": "pass_at_1",
+            "generation_kwargs": {
+                "do_sample": True,
+                "top_p": 0.95,
+                "temperature": 0.8,
+                "repeats": 20,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1, 10],
+                "n_exe_workers": 20,
+                "rich_exec_info": True,
+            },
+            "metadata": {
+                "regimes": [],
+            },
+        },
+        "codex_humanevalfim_multi::olmo3": {
+            "task_name": "codex_humanevalfim_multi",
+            "primary_metric": "pass_at_1",
+            "generation_kwargs": {
+                "do_sample": True,
+                "top_p": 0.95,
+                "temperature": 0.8,
+                "repeats": 20,
+            },
+            "metric_kwargs": {
+                "pass_at_ks": [1, 10],
+                "n_exe_workers": 20,
+                "rich_exec_info": True,
+            },
+            "metadata": {
+                "regimes": [],
             },
         },
     }
