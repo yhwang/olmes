@@ -3254,6 +3254,14 @@ TASK_CONFIGS.update(
                 "regimes": [],
             },
         },
+        "simpleqa::no-judge-short-form": {
+            "task_name": "simpleqa:no-judge",
+            "split": "test",
+            "primary_metric": "f1",
+            "num_shots": 5,
+            "limit": 1000,
+            "fewshot_source": "simpleqa",
+        },
     }
 )
 
