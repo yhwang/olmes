@@ -1,10 +1,12 @@
 import dataclasses
+import logging
 from typing import Dict, Optional, Union
 
-from lm_eval.utils import eval_logger
+# from lm_eval.utils import eval_logger
 
 from oe_eval.dependencies.ifeval import instructions_registry
 
+eval_logger = logging.getLogger()
 
 @dataclasses.dataclass
 class InputExample:

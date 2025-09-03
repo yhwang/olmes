@@ -1,5 +1,6 @@
 import copy
 import re
+import logging
 from typing import Any, Dict, List, Optional, Tuple, Union, cast
 
 import torch
@@ -23,7 +24,7 @@ from oe_eval.utils import cut_at_stop_sequence
 # Minimally modified version of model inference code from lm_eval, (models/huggingface.py)
 # adding _verbose versions of various methods to return additional information
 
-eval_logger = utils.eval_logger
+eval_logger = logging.getLogger()
 
 
 class HFLM_Verbose(HFLM):
