@@ -31,6 +31,7 @@ MODEL_DEFAULTS = {
     "tensor_parallel_size": None,
     "max_model_len": None,
     "batch_size": None,
+    "max_gen_toks": None,
 }
 
 TASK_DEFAULTS = {
