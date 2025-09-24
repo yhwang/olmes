@@ -6,7 +6,7 @@ MODEL_DEFAULTS = {
     "revision": None,
     "trust_remote_code": None,
     "tokenizer": None,
-    "max_length": 2048,
+    "max_length": None,
     "model_path": None,
     "load_in_4bit": False,
     "load_in_8bit": False,
@@ -27,6 +27,10 @@ MODEL_DEFAULTS = {
     "gpu_memory_utilization": None,
     "process_output": None,
     "api_base_url": None,  # Used for litellm models
+    "tensor_parallel_size": None, # Used for vllm models
+    "max_model_len": None, # Used for vllm models
+    "batch_size": None, # Used for vllm models
+    "max_gen_toks": None, # Used for vllm models
 }
 
 TASK_DEFAULTS = {
